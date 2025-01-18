@@ -11,5 +11,5 @@ public class ProdutoApplication {
     public static void main(String[] args) {
         SpringApplication.run(ProdutoApplication.class, args);
     }
-
+   /* TODO ADICIONAR COBERTURA DE TESTES 80% NA PIPELINE PARA DEV E INTEGRAÇÃO RODANDO PÓS DEV*/
 }

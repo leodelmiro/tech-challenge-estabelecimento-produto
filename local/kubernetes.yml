@@ -130,3 +130,4 @@ data:
   db_url: jdbc:postgresql://estabelecimento.cxhd5ilcfd6d.us-east-1.rds.amazonaws.com:5432/produto
   db_username: "postgres"
   db_password: "12345678"
+  redis_url: redis-estabelecimento.z1mqaz.0001.use1.cache.amazonaws.com
