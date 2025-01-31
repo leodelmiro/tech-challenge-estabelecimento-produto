@@ -1,32 +1,32 @@
 services:
-  db:
+  db-produto:
     image: postgres:13
-    container_name: postgres-db
+    container_name: postgres-db-produto
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 1234
       POSTGRES_DB: produto
     ports:
-      - "5432:5432"
+      - "5433:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
       - ./init-db:/docker-entrypoint-initdb.d
     networks:
       - backend
 
-  app:
+  app-produto:
     build:
       context: ..
       dockerfile: ./Dockerfile
-    container_name: spring-boot-app
+    container_name: spring-boot-app-produto
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/produto
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: 1234
     ports:
-      - "8080:8080"
+      - "8082:8080"
     depends_on:
-      - db
+      - db-produto
     networks:
       - backend
 
