@@ -1,16 +1,22 @@
 spring:
   datasource:
-    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5433/produto}
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://host.docker.internal:5433/produto}
     username: ${SPRING_DATASOURCE_USERNAME:postgres}
     password: ${SPRING_DATASOURCE_PASSWORD:1234}
   jpa:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
+        boot:
+          allow_jdbc_metadata_access: false
+        ddl-auto: none
   data:
     redis:
       host: ${SPRING_REDIS_URL:localhost}
       port: ${SPRING_REDIS_PORT:6379}
+  sql:
+    init:
+      mode: never
 
 management:
   endpoints:
