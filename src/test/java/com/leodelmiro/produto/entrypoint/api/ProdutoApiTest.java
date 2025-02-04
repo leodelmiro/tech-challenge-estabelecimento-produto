@@ -58,7 +58,7 @@ class ProdutoApiTest {
     @Test
     void deveCadastrarProduto() {
         when(cadastraProdutoUseCase.cadastrar(any())).thenReturn(getProduto(1L, "Produto 1", "Descrição 1"));
-        when(produtoMapper.toProdutoResponse(any())).thenReturn(getProdutoResponse(10L));
+        when(produtoMapper.toProdutoResponse(any())).thenReturn(getProdutoResponse(10L ));
 
         CadastraProdutoRequest request = new CadastraProdutoRequest("Produto Teste",
                 Categoria.BEBIDA,
