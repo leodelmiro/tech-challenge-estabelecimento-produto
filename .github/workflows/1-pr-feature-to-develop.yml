@@ -21,19 +21,21 @@ jobs:
       - name: Cache SonarQube packages
         uses: actions/cache@v4
         with:
-          path: ~/.sonar/cache
-          key: ${{ runner.os }}-sonar
-          restore-keys: ${{ runner.os }}-sonar
-      - name: Cache Maven packages
-        uses: actions/cache@v4
-        with:
           path: ~/.m2
-          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-          restore-keys: ${{ runner.os }}-m2
-      - name: Build and analyze
+          key: maven-${{ runner.os }}-${{ hashFiles('**/pom.xml') }}
+          restore-keys: maven-${{ runner.os }}
+      - name: Compilar e rodar testes com cobertura
+        run: mvn clean verify -DskipTests=false
+      - name: Rodar análise SonarQube
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=leodelmiro_tech-challenge-estabelecimento-produto -Dsonar.qualitygate.wait=true
+        run: |
+          mvn sonar:sonar \
+            -Dsonar.projectKey=leodelmiro_tech-challenge-estabelecimento-produto \
+            -Dsonar.organization=leodelmiro \
+            -Dsonar.host.url=https://sonarcloud.io \
+            -Dsonar.login=$SONAR_TOKEN \
+            -Dsonar.qualitygate.wait=true
       - name: Create pull request
         id: open-pr
         uses: repo-sync/pull-request@v2
