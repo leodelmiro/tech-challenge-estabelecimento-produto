@@ -172,6 +172,7 @@ class ProdutoControllerTest {
         Produto produto = getProduto(1L, "Produto 1", "Descrição 1");
         ProdutoResponse response = new ProdutoResponse(1L,
                 "Produto Editado",
+                Categoria.BEBIDA,
                 BigDecimal.ONE,
                 "Descrição Teste",
                 10L,
