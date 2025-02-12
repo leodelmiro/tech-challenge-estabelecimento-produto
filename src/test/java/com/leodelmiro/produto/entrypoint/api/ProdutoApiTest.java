@@ -89,6 +89,15 @@ class ProdutoApiTest {
     }
 
     @Test
+    void deveLancar404SeErroAoBuscar() {
+        when(buscaProdutoUseCase.buscar(1L)).thenThrow(new IllegalArgumentException());
+
+        ResponseEntity<ProdutoResponse> result = produtoApi.buscar(1L);
+
+        assertEquals(404, result.getStatusCode().value());
+    }
+
+    @Test
     void deveListarTodosLanches() {
         Set<Produto> produtos = Set.of(
                 getLanche(1L, "Produto Teste", "Descrição Teste")
@@ -181,6 +190,17 @@ class ProdutoApiTest {
         assertEquals(200, result.getStatusCode().value());
         Assertions.assertNotNull(result.getBody());
         assertEquals("Produto Teste", result.getBody().nome());
+    }
+
+    @Test
+    void deveLancar404SeErroAoEditar() {
+        EditaProdutoRequest request = new EditaProdutoRequest("Produto Editado", null, null, null, null, null);
+
+        when(editaProdutoUseCase.editar(any(), eq(1L))).thenThrow(new IllegalArgumentException());
+
+        ResponseEntity<ProdutoResponse> result = produtoApi.editar(1L, request);
+
+        assertEquals(404, result.getStatusCode().value());
     }
 
     @Test
