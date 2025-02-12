@@ -26,8 +26,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
-import static utils.ProdutoApplicationUtilsTest.getProduto;
-import static utils.ProdutoApplicationUtilsTest.getProdutoResponse;
+import static utils.ProdutoApplicationUtilsTest.*;
 
 
 class ProdutoApiTest {
@@ -90,6 +89,69 @@ class ProdutoApiTest {
     }
 
     @Test
+    void deveListarTodosLanches() {
+        Set<Produto> produtos = Set.of(
+                getLanche(1L, "Produto Teste", "Descrição Teste")
+        );
+
+        when(listaProdutosUseCase.listarPorLanches()).thenReturn(produtos);
+
+        ResponseEntity<Set<ProdutoResponse>> result = produtoApi.listarLanches();
+
+        assertEquals(200, result.getStatusCode().value());
+        Assertions.assertNotNull(result.getBody());
+        assertEquals(1, result.getBody().size());
+    }
+
+    @Test
+    void deveListarTodasBebidas() {
+        Set<Produto> produtos = Set.of(
+                getBebida(1L, "Produto Teste", "Descrição Teste")
+        );
+
+        when(listaProdutosUseCase.listarPorBebidas()).thenReturn(produtos);
+
+        ResponseEntity<Set<ProdutoResponse>> result = produtoApi.listarBebidas();
+
+        assertEquals(200, result.getStatusCode().value());
+        Assertions.assertNotNull(result.getBody());
+        assertEquals(1, result.getBody().size());
+    }
+
+
+    @Test
+    void deveListarTodosAcompanhamentos() {
+        Set<Produto> produtos = Set.of(
+                getAcompanhamento(1L, "Produto Teste", "Descrição Teste")
+        );
+
+        when(listaProdutosUseCase.listarPorAcompanhamentos()).thenReturn(produtos);
+
+        ResponseEntity<Set<ProdutoResponse>> result = produtoApi.listarAcompanhamentos();
+
+        assertEquals(200, result.getStatusCode().value());
+        Assertions.assertNotNull(result.getBody());
+        assertEquals(1, result.getBody().size());
+    }
+
+
+    @Test
+    void deveListarTodasSobremesas() {
+        Set<Produto> produtos = Set.of(
+                getSobremesa(1L, "Produto Teste", "Descrição Teste")
+        );
+
+        when(listaProdutosUseCase.listarPorSobremesas()).thenReturn(produtos);
+
+        ResponseEntity<Set<ProdutoResponse>> result = produtoApi.listarSobremesas();
+
+        assertEquals(200, result.getStatusCode().value());
+        Assertions.assertNotNull(result.getBody());
+        assertEquals(1, result.getBody().size());
+    }
+
+
+    @Test
     void deveListarTodosProdutos() {
         Set<Produto> produtos = Set.of(
                 getProduto(1L, "Produto Teste", "Descrição Teste")
@@ -103,6 +165,7 @@ class ProdutoApiTest {
         Assertions.assertNotNull(result.getBody());
         assertEquals(1, result.getBody().size());
     }
+
 
     @Test
     void deveEditarProduto() {

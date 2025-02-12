@@ -18,24 +18,23 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
           cache: maven
-      - name: Cache SonarQube packages
-        uses: actions/cache@v4
-        with:
-          path: ~/.m2
-          key: maven-${{ runner.os }}-${{ hashFiles('**/pom.xml') }}
-          restore-keys: maven-${{ runner.os }}
-      - name: Compilar e rodar testes com cobertura
-        run: mvn clean verify -DskipTests=false
-      - name: Rodar análise SonarQube
+      - name: Compilar e testar com Maven
+        run: mvn -B clean verify
+      - name: Analisar com SonarQube
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
-          mvn sonar:sonar \
-            -Dsonar.projectKey=leodelmiro_tech-challenge-estabelecimento-produto \
-            -Dsonar.organization=leodelmiro \
-            -Dsonar.host.url=https://sonarcloud.io \
-            -Dsonar.login=$SONAR_TOKEN \
-            -Dsonar.qualitygate.wait=true
+          mvn -B sonar:sonar \
+          -Dsonar.projectKey=leodelmiro_tech-challenge-estabelecimento-produto \
+          -Dsonar.organization=leodelmiro \
+          -Dsonar.host.url=https://sonarcloud.io \
+          -Dsonar.token=$SONAR_TOKEN \
+          -Dsonar.sources=src/main \
+          -Dsonar.tests=src/test \
+          -Dsonar.java.binaries=${{ github.workspace }}/target/classes \
+          -Dsonar.coverage.jacoco.xmlReportPaths=${{ github.workspace }}/target/site/jacoco/jacoco.xml \
+          -Dsonar.coverage.exclusions=**/config/**,**/mapper/**,**/repository/**,**/request/**,**/response/**,**/ProdutoApplication**,**/domain** \
+          -Dsonar.qualitygate.wait=true
       - name: Create pull request
         id: open-pr
         uses: repo-sync/pull-request@v2
