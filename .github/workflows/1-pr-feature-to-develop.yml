@@ -34,6 +34,7 @@ jobs:
           -Dsonar.java.binaries=${{ github.workspace }}/target/classes \
           -Dsonar.coverage.jacoco.xmlReportPaths=${{ github.workspace }}/target/site/jacoco/jacoco.xml \
           -Dsonar.coverage.exclusions=**/config/**,**/mapper/**,**/repository/**,**/request/**,**/response/**,**/ProdutoApplication**,**/domain** \
+          -Dsonar.surefire.reportsPath=target/surefire-reports \
           -Dsonar.qualitygate.wait=true
       - name: Create pull request
         id: open-pr
