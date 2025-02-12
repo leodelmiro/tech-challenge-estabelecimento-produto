@@ -20,11 +20,15 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.Set;
+import java.util.logging.Logger;
 
 @Tag(name = "Produto", description = "Endpoints relacionados ao Produto")
 @RestController
 @RequestMapping("/api/v1/produtos")
 public class ProdutoApi {
+
+    Logger logger = Logger.getLogger(getClass().getName());
+
     @Autowired
     private CadastraProdutoUseCase cadastraProdutoUseCase;
 
@@ -70,7 +74,7 @@ public class ProdutoApi {
             var produtoResponse = ProdutoController.buscar(id, buscaProdutoUseCase, produtoMapper);
             return ResponseEntity.ok().body(produtoResponse);
         } catch (Exception exception) {
-            System.out.println(exception.getMessage());
+            logger.warning(exception.getMessage());
             return ResponseEntity.notFound().build();
         }
     }
@@ -149,7 +153,7 @@ public class ProdutoApi {
             var produtoResponse = ProdutoController.editar(id, editaProdutoRequest, editaProdutoUseCase, produtoMapper);
             return ResponseEntity.ok().body(produtoResponse);
         } catch (Exception exception) {
-            System.out.println(exception.getMessage());
+            logger.warning(exception.getMessage());
             return ResponseEntity.notFound().build();
         }
     }
