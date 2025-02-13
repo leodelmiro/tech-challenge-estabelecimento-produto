@@ -1,15 +1,15 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: backend-estabelecimento-hpa
+  name: backend-produto-hpa
   namespace: backend-estabelecimento
   labels:
-    app.kubernetes.io/name: backend-estabelecimento
+    app.kubernetes.io/name: backend-produto-app
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: backend-estabelecimento-app
+    name: backend-produto-app
   minReplicas: 1
   maxReplicas: 3
   metrics:

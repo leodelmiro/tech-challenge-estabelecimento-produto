@@ -1,4 +1,4 @@
-# Tech Challenge - Estabelecimento
+# Tech Challenge - Estabelecimento - App Produto
 
 # Índice
 
