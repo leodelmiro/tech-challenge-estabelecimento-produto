@@ -4,7 +4,7 @@ metadata:
   name: backend-produto-configmap
   namespace: backend-estabelecimento
 data:
-  db_url: jdbc:postgresql://estabelecimento.cpmueqg0y0dn.us-east-1.rds.amazonaws.com:5432/estabelecimento
+  db_url: jdbc:postgresql://produto.cf4grgsaa5x0.us-east-1.rds.amazonaws.com:5432/produto
   db_username: "postgres"
   db_password: "12345678"
-  redis_url: redis-estabelecimento.z1mqaz.0001.use1.cache.amazonaws.com
+  redis_url: redis-produto.b0jn9d.0001.use1.cache.amazonaws.com
