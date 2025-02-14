@@ -124,6 +124,4 @@ Para executar o script, siga os passos abaixo:
 Os Endpoints da aplicação, podem ser acessados pelo Swagger ao rodar o projeto na
 url http://localhost:8080/swagger-ui/index.html
 
-**Caso preferir pode importar a collection Insomnia que se encontra no projeto, no arquivo Insomnia Collection, porém
-será
-necessário o Insomnia instalado.**
+**Caso preferir pode importar a collection Insomnia que se encontra no projeto, no arquivo Insomnia Collection, porém será necessário o Insomnia instalado.**
