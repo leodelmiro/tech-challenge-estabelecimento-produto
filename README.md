@@ -16,7 +16,7 @@
 Aplicação se trata de um Projeto Fiap Tech Challenge - Software Architecture, simulando um projeto de um estabelecimento
 de pedidos (fast-food).
 
-Este repositório é referente ao microserviço responsável pelo Produtos(CRUD) com a Solução em Clean Architecture
+Este repositório é referente ao microserviço responsável pelo Produtos(CRUD) com a Solução em Clean Architecture e Java Spring.
 
 ### Demais repositórios
 - https://github.com/leodelmiro/tech-challenge-estabelecimento-db
@@ -125,10 +125,9 @@ Para executar o script, siga os passos abaixo:
 Os Endpoints da aplicação, podem ser acessados pelo Swagger ao rodar o projeto na
 url http://localhost:8080/swagger-ui/index.html
 
-**Caso preferir pode importar a collection Insomnia que se encontra no projeto, no arquivo Insomnia Collection, porém
-será
-necessário o Insomnia instalado.**
+**Caso preferir pode importar a collection Insomnia que se encontra no projeto, no arquivo Insomnia Collection, porém será necessário o Insomnia instalado.**
 
 ## Sonar Coverage
 ![Sonar Coverage](sonar-coverage.png)
 https://sonarcloud.io/summary/overall?id=com.leodelmiro%3Aproduto&branch=master
+
